@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import {
   CallToolRequestSchema,
@@ -11,7 +11,7 @@ import {
 import { FetchAndParsePDFSchema, handleFetchAndParsePDF } from './tools/pdfTool.js';
 
 // Create MCP server instance
-const server = new Server(
+const server = new McpServer(
   {
     name: 'pdf-mcp-server',
     version: '1.0.0',
