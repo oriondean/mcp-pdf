@@ -3,6 +3,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { FetchAndParsePDFSchema, handleFetchAndParsePDF } from './tools/pdfTool.js';
+import { UploadPDFToGeminiSchema, handleUploadPDFToGemini } from './tools/geminiTool.js';
 
 // Create MCP server instance
 const server = new McpServer(
@@ -29,6 +30,31 @@ server.registerTool(
   async (args) => {
     // Execute tool
     const result = await handleFetchAndParsePDF(args);
+    
+    return {
+      content: [
+        {
+          type: 'text',
+          text: result,
+        },
+      ],
+    };
+  }
+);
+
+// Register the upload_pdf_to_gemini tool
+server.registerTool(
+  'upload_pdf_to_gemini',
+  {
+    description:
+      'Fetches a PDF from a URL, renders it as images, and uploads to Google Gemini for advanced visual processing and analysis with a custom prompt. ' +
+      'Gemini can analyze charts, diagrams, tables, handwriting, and complex visual layouts that traditional text extraction might miss. ' +
+      'Requires GOOGLE_API_KEY or GEMINI_API_KEY environment variable. Best for visually complex documents, forms, presentations, or documents with mixed content.',
+    inputSchema: UploadPDFToGeminiSchema,
+  },
+  async (args) => {
+    // Execute tool
+    const result = await handleUploadPDFToGemini(args);
     
     return {
       content: [
