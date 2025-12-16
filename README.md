@@ -153,7 +153,7 @@ src/
 
 - **[@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol)**: MCP server framework
 - **[PDF.js](https://mozilla.github.io/pdf.js/)**: PDF parsing and text extraction
-- **[node-canvas](https://github.com/Automattic/node-canvas)**: Server-side canvas for rendering
+- **[@napi-rs/canvas](https://github.com/Brooooooklyn/canvas)**: High-performance server-side canvas for rendering
 - **[Zod](https://zod.dev/)**: Runtime type validation
 - **TypeScript**: Type-safe development
 
@@ -194,7 +194,3 @@ The server provides detailed error messages for:
 ## License
 
 MIT
-
-## Contributing
-
-Contributions welcome! Please ensure TypeScript compilation succeeds and follow existing code style.
